@@ -28,7 +28,8 @@ class DetailsVC: UIViewController {
         layout.minimumInteritemSpacing = 2
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell") // создать кастомную ячейку
+        collectionView.register(GalleryCollectionViewCell.self,
+                                forCellWithReuseIdentifier: GalleryCollectionViewCell.identifier) // создать кастомную ячейку
         
         return collectionView
     }()
@@ -94,7 +95,7 @@ extension DetailsVC {
                                                             target: self,
                                                             action: #selector(shareTapped))
         navigationController?.navigationItem.hidesBackButton = true //
-        navigationController?.navigationBar.tintColor = .black //сделать кастомным
+        navigationController?.navigationBar.tintColor = Constants.Colors.customBlack //сделать кастомным
     }
     
 }
@@ -121,7 +122,13 @@ extension DetailsVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell() // сделать кастомную ячейку
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.identifier,
+                                                            for: indexPath) as? GalleryCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        let url = otherImages[indexPath.row]
+        cell.configure(with: url) // добавить реальные юрл в массив
+        return cell
     }
     
 }

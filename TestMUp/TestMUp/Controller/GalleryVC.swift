@@ -19,7 +19,8 @@ final class GalleryVC: UIViewController {
         layout.minimumInteritemSpacing = 2
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell") // создать кастомную ячейку
+        collectionView.register(GalleryCollectionViewCell.self,
+                                forCellWithReuseIdentifier: GalleryCollectionViewCell.identifier)
         
         return collectionView
     }()
@@ -62,7 +63,7 @@ extension GalleryVC {
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(exitButtonTapped))
-        navigationController?.navigationBar.tintColor = .black //сделать кастомным
+        navigationController?.navigationBar.tintColor = Constants.Colors.customBlack //сделать кастомным
     }
     
     private func setupConstraints() {
@@ -102,7 +103,13 @@ extension GalleryVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell() // добавить сюда кастомную ячейку
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.identifier,
+                                                            for: indexPath) as? GalleryCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        let url = imagesArray[indexPath.row]
+        cell.configure(with: url) // добавить реальные юрл в массив
+        return cell
     }
     
 }
