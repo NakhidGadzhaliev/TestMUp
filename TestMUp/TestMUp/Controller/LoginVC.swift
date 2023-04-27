@@ -25,8 +25,8 @@ final class LoginVC: UIViewController {
     private lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Log in with VK", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .black
+        button.setTitleColor(Constants.Colors.customWhite, for: .normal)
+        button.backgroundColor = Constants.Colors.customBlack
         button.layer.cornerRadius = 12
         button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         
