@@ -24,9 +24,9 @@ class DetailsVC: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let size = (view.frame.width / 7) - 1
         layout.itemSize = CGSize(width: size, height: size)
-        layout.minimumLineSpacing = 2
+        layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 2
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(GalleryCollectionViewCell.self,
                                 forCellWithReuseIdentifier: GalleryCollectionViewCell.identifier) // создать кастомную ячейку
