@@ -16,7 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = LoginVC()
+        
+        if AuthManager.shared.isUserLoggedIn && !AuthManager.shared.isTokenExpired {
+            let galleryVC = GalleryVC()
+            window.rootViewController = UINavigationController(rootViewController: galleryVC)
+        } else {
+            window.rootViewController = LoginVC()
+        }
+        
         window.makeKeyAndVisible()
         self.window = window
         

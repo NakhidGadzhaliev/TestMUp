@@ -42,11 +42,11 @@ final class GalleryVC: UIViewController {
 extension GalleryVC {
     
     private func viewUpdate() {
-        title = "Mobile Up Gallery"
         view.backgroundColor = .systemBackground
         view.addSubview(galleryCollectionView)
         navBarConfiguration()
         setupConstraints()
+        collectionViewConfiguration()
     }
     
     private func fetchData() {
@@ -64,7 +64,7 @@ extension GalleryVC {
     }
     
     private func showErrorAlert() {
-        let alert = UIAlertController(title: "Failed to load images",
+        let alert = UIAlertController(title: "Failed loading images",
                                       message: nil,
                                       preferredStyle: .alert)
         
@@ -83,7 +83,8 @@ extension GalleryVC {
     }
     
     private func navBarConfiguration() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Выход",
+        title = "Mobile Up Gallery"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout",
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(exitButtonTapped))
@@ -118,8 +119,8 @@ extension GalleryVC {
                     }
                 }
             }
+            
         }))
-        
         present(alert, animated: true)
     }
     
@@ -133,8 +134,8 @@ extension GalleryVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let image = imagesArray[indexPath.row]
         let otherImages = imagesArray.filter { $0.id != image.id }
-//        let detailVC = DetailsVC(generalImage: image, otherImages: [otherImages])
-//        navigationController?.pushViewController(detailVC, animated: true)
+        let detailVC = DetailsVC(generalImage: image, otherImages: otherImages)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
 }
@@ -154,15 +155,8 @@ extension GalleryVC: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         let url = imagesArray[indexPath.row].urlString
-        cell.configure(with: url) // добавить реальные юрл в массив
+        cell.configure(with: url)
         return cell
     }
     
 }
-
-// MARK: - Оставшиеся задания
-/*
- 1. Добавить логику загрузки данных
- 2. Обработать ошибку
- 3. Добавить логику выхода из аккаунта
- */

@@ -51,7 +51,9 @@ class DetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        viewUpdate()
+        pinchToZoom()
+        collectionView.dataSource = self
     }
 }
 
@@ -72,7 +74,7 @@ extension DetailsVC {
         view.addSubview(collectionView)
         navBarConfiguration()
         setupConstraints()
-        // imageView.image = добавить логику получения изображения
+        imageView.kf.setImage(with: URL(string: image?.urlString ?? ""), placeholder: UIImage(systemName: "photo"))
     }
     
     private func setupConstraints() {
@@ -91,11 +93,17 @@ extension DetailsVC {
     }
     
     private func navBarConfiguration() {
+        title = getDate()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                             target: self,
                                                             action: #selector(shareTapped))
         navigationController?.navigationItem.hidesBackButton = true //
         navigationController?.navigationBar.tintColor = Constants.Colors.customBlack //сделать кастомным
+    }
+    
+    private func pinchToZoom() {
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(didPinch))
+        imageView.addGestureRecognizer(pinchGesture)
     }
     
 }
@@ -105,6 +113,18 @@ extension DetailsVC {
 
 // MARK: - ADDING ACTIONS
 extension DetailsVC {
+    
+    @objc private func didPinch(_ gesture: UIPinchGestureRecognizer) {
+        if gesture.state == .changed {
+            let scale = gesture.scale
+            imageView.frame = CGRect(x: 0, y: 0, width: size  * scale, height: size * scale)
+            imageView.center = view.center
+        }
+        if gesture.state == .ended {
+            imageView.frame = CGRect(x: 0, y: 0, width: size, height: size)
+            imageView.center = view.center
+        }
+    }
     
     @objc private func shareTapped() {
         guard let image = imageView.image else {

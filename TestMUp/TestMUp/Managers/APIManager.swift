@@ -13,9 +13,7 @@ final class APIManager  {
     
     func getImages(completion: @escaping (Result<[ImageModel], Error>) -> Void) {
         
-        guard let url = URL(string: Constants.Request.baseURL +
-                                    Constants.Request.albumURL +
-                                    "&access_token=\(AuthManager.shared.token ?? "")&v=5.131") else { return }
+        guard let url = URL(string: Constants.Request.baseURL + Constants.Request.albumURL + "&access_token=\(AuthManager.shared.token ?? "")&v=5.131") else { return }
 
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -35,9 +33,11 @@ final class APIManager  {
                     )
                 }
                 completion(.success(images))
+                print("Success")
             }
             catch {
                 completion(.failure(error))
+                print("failure")
             }
         }
         task.resume()
