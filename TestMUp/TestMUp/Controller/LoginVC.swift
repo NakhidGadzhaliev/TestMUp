@@ -68,6 +68,16 @@ extension LoginVC {
         }
         
     }
+    
+    private func authErrorAlert() {
+        let title = "Error"
+        let message = "Some error during authorization"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        present(alert, animated: true)
+    }
+    
 }
 
 
@@ -76,9 +86,20 @@ extension LoginVC {
 // MARK: - ADDING ACTIONS
 extension LoginVC {
     @objc private func loginButtonTapped() {
-        let galleryVC = GalleryVC()
-        let navVC = UINavigationController(rootViewController: galleryVC)
-        navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+        let authVC = AuthorizationVC()
+        
+        authVC.authorizationCompletion = { [weak self] success in
+            switch success {
+            case true:
+                let galleryVC = GalleryVC()
+                let navVC = UINavigationController(rootViewController: galleryVC)
+                navVC.modalPresentationStyle = .fullScreen
+                self?.present(navVC, animated: true)
+            case false:
+                self?.authErrorAlert()
+            }
+        }
+        
+        present(authVC, animated: true)
     }
 }

@@ -12,6 +12,10 @@
 		D007D9F729FA857500046A23 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D007D9F629FA857500046A23 /* LoginVC.swift */; };
 		D007D9FC29FA857600046A23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D007D9FB29FA857600046A23 /* Assets.xcassets */; };
 		D007D9FF29FA857600046A23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D007D9FD29FA857600046A23 /* LaunchScreen.storyboard */; };
+		D016CC4E29FBC66C0039E8A2 /* APIResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016CC4D29FBC66C0039E8A2 /* APIResponseModel.swift */; };
+		D016CC5029FBC7990039E8A2 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016CC4F29FBC7990039E8A2 /* ImageModel.swift */; };
+		D016CC5329FBC96C0039E8A2 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016CC5229FBC96C0039E8A2 /* APIManager.swift */; };
+		D016CC5529FBCB680039E8A2 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016CC5429FBCB680039E8A2 /* AuthManager.swift */; };
 		D03D974529FA906A006A4CEC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D03D974429FA906A006A4CEC /* SnapKit */; };
 		D03D974729FA962B006A4CEC /* AuthorizationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03D974629FA962B006A4CEC /* AuthorizationVC.swift */; };
 		D03D974929FA9A7B006A4CEC /* GalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03D974829FA9A7B006A4CEC /* GalleryVC.swift */; };
@@ -30,6 +34,10 @@
 		D007D9FB29FA857600046A23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D007D9FE29FA857600046A23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D007DA0029FA857600046A23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D016CC4D29FBC66C0039E8A2 /* APIResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseModel.swift; sourceTree = "<group>"; };
+		D016CC4F29FBC7990039E8A2 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		D016CC5229FBC96C0039E8A2 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		D016CC5429FBCB680039E8A2 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		D03D974629FA962B006A4CEC /* AuthorizationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationVC.swift; sourceTree = "<group>"; };
 		D03D974829FA9A7B006A4CEC /* GalleryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryVC.swift; sourceTree = "<group>"; };
 		D03D974A29FA9F48006A4CEC /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
@@ -74,11 +82,21 @@
 				D03D974129FA8E91006A4CEC /* Model */,
 				D03D974029FA8E8B006A4CEC /* View */,
 				D03D973F29FA8E7E006A4CEC /* Controller */,
+				D016CC5129FBC8B10039E8A2 /* Managers */,
 				D03D974229FA8EA9006A4CEC /* Resources */,
 				D04BA4ED29FABE28000D8154 /* Extension */,
 				D007DA0029FA857600046A23 /* Info.plist */,
 			);
 			path = TestMUp;
+			sourceTree = "<group>";
+		};
+		D016CC5129FBC8B10039E8A2 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D016CC5229FBC96C0039E8A2 /* APIManager.swift */,
+				D016CC5429FBCB680039E8A2 /* AuthManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		D03D973E29FA8E73006A4CEC /* App */ = {
@@ -113,6 +131,8 @@
 		D03D974129FA8E91006A4CEC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D016CC4D29FBC66C0039E8A2 /* APIResponseModel.swift */,
+				D016CC4F29FBC7990039E8A2 /* ImageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -220,9 +240,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D016CC5329FBC96C0039E8A2 /* APIManager.swift in Sources */,
+				D016CC5029FBC7990039E8A2 /* ImageModel.swift in Sources */,
 				D007D9F729FA857500046A23 /* LoginVC.swift in Sources */,
+				D016CC5529FBCB680039E8A2 /* AuthManager.swift in Sources */,
 				D03D974B29FA9F48006A4CEC /* DetailsVC.swift in Sources */,
 				D04BA4EF29FABE4E000D8154 /* DateFormatterExtension.swift in Sources */,
+				D016CC4E29FBC66C0039E8A2 /* APIResponseModel.swift in Sources */,
 				D03D974929FA9A7B006A4CEC /* GalleryVC.swift in Sources */,
 				D007D9F329FA857500046A23 /* AppDelegate.swift in Sources */,
 				D03D974729FA962B006A4CEC /* AuthorizationVC.swift in Sources */,

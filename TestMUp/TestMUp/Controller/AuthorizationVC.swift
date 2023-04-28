@@ -21,10 +21,11 @@ final class AuthorizationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewUpdate()
+        fetchData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
+        authorizationCompletion?(false)
     }
 }
 
@@ -57,6 +58,11 @@ extension AuthorizationVC {
         }
     }
     
+    private func fetchData() {
+        guard let url = AuthManager.shared.loginURL else { return }
+        webView.load(URLRequest(url: url))
+    }
+    
 }
 
 
@@ -77,6 +83,17 @@ extension AuthorizationVC: WKNavigationDelegate {
         
         guard let url = webView.url?.absoluteString else { return }
         
+        if url.hasPrefix("https://oauth.vk.com/blank.html#access_token=") {
+            AuthManager.shared.authorization(redirectString: url) { [weak self] success in
+                self?.dismiss(animated: true) {
+                    self?.authorizationCompletion?(success)
+                }
+            }
+        } else if url.hasPrefix("https://oauth.vk.com/blank.html#error=") {
+            self.dismiss(animated: true) {
+                self.authorizationCompletion?(false)
+            }
+        }
         
     }
     
