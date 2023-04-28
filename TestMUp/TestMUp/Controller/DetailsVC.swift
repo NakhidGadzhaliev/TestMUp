@@ -34,12 +34,12 @@ class DetailsVC: UIViewController {
         return collectionView
     }()
     
-    private var image: String? // здесь будет изображение
-    private var otherImages: [String] = [String]() // остальные изображения
+    private var image: ImageModel? // здесь будет изображение
+    private var otherImages: [ImageModel] = [ImageModel]() // остальные изображения
     private lazy var size = view.frame.width
     
     // MARK: - Initialization
-    init(generalImage: String, otherImages: [String]) {
+    init(generalImage: ImageModel, otherImages: [ImageModel]) {
         super.init(nibName: nil, bundle: nil)
         self.image = generalImage
         self.otherImages = otherImages
@@ -62,8 +62,8 @@ class DetailsVC: UIViewController {
 extension DetailsVC {
     
     private func getDate() -> String {
-        // Добавить сюда логику получения даты с изображения
-        return "01"
+        let date = Date(timeIntervalSince1970: TimeInterval(image?.date ?? 0))
+        return DateFormatter.titleDateFormatter.string(from: date)
     }
     
     private func viewUpdate() {
@@ -107,7 +107,40 @@ extension DetailsVC {
 extension DetailsVC {
     
     @objc private func shareTapped() {
-        // Добавить логику "поделиться"
+        guard let image = imageView.image else {
+            let alert = UIAlertController(title: "Error",
+                                          message: "Image not found",
+                                          preferredStyle: .alert)
+            let actionOK = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(actionOK)
+            self.present(alert, animated: true)
+            return
+        }
+        
+        let shareController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        shareController.completionWithItemsHandler = { _, bool, _, error in
+            
+            if bool {
+                let alert = UIAlertController(title: "Saved",
+                                              message: "Image successfully saved to gallery",
+                                              preferredStyle: .alert)
+                let actionOK = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(actionOK)
+                self.present(alert, animated: true)
+            }
+            
+            if error != nil {
+                let alert = UIAlertController(title: "Error",
+                                              message: "An error occurred during execution",
+                                              preferredStyle: .alert)
+                let actionOK = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(actionOK)
+                self.present(alert, animated: true)
+            }
+        }
+        
+        present(shareController, animated: true)
     }
     
 }
@@ -126,18 +159,9 @@ extension DetailsVC: UICollectionViewDataSource {
                                                             for: indexPath) as? GalleryCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let url = otherImages[indexPath.row]
-        cell.configure(with: url) // добавить реальные юрл в массив
+        let url = otherImages[indexPath.row].urlString
+        cell.configure(with: url)
         return cell
     }
     
 }
-
-
-// MARK: - Оставшиеся задания
-/*
- 1. Добавить логику загрузки данных по изображениям
- 2. Обработать ошибки
- 3. Добавить логику приближения изображения
- 4. Добавить логику "поделиться"
- */
