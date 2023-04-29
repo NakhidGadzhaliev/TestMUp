@@ -128,8 +128,8 @@ extension DetailsVC {
     
     @objc private func shareTapped() {
         guard let image = imageView.image else {
-            let alert = UIAlertController(title: "Error",
-                                          message: "Image not found",
+            let alert = UIAlertController(title: "Error".localized(),
+                                          message: "Image not found".localized(),
                                           preferredStyle: .alert)
             let actionOK = UIAlertAction(title: "OK", style: .default)
             alert.addAction(actionOK)
@@ -142,8 +142,8 @@ extension DetailsVC {
         shareController.completionWithItemsHandler = { _, bool, _, error in
             
             if bool {
-                let alert = UIAlertController(title: "Saved",
-                                              message: "Image successfully saved to gallery",
+                let alert = UIAlertController(title: "Saved".localized(),
+                                              message: "Image successfully saved to gallery".localized(),
                                               preferredStyle: .alert)
                 let actionOK = UIAlertAction(title: "OK", style: .default)
                 alert.addAction(actionOK)
@@ -151,8 +151,8 @@ extension DetailsVC {
             }
             
             if error != nil {
-                let alert = UIAlertController(title: "Error",
-                                              message: "An error occurred during execution",
+                let alert = UIAlertController(title: "Error".localized(),
+                                              message: "Some error during execution".localized(),
                                               preferredStyle: .alert)
                 let actionOK = UIAlertAction(title: "OK", style: .default)
                 alert.addAction(actionOK)
