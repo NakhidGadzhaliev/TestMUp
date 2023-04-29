@@ -40,7 +40,9 @@ extension GalleryCollectionViewCell {
     
     func configure(with imageUrl: String) {
         let url = URL(string: imageUrl)
-        imageView.kf.setImage(with: url, placeholder: UIImage(systemName: "photo"))
+        let placeholderImage = UIImage(systemName: "photo")?.withRenderingMode(.alwaysOriginal)
+        
+        imageView.kf.setImage(with: url, placeholder: placeholderImage)
     }
     
     private func setupUI() {

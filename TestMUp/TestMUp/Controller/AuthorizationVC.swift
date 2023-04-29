@@ -98,9 +98,3 @@ extension AuthorizationVC: WKNavigationDelegate {
     }
     
 }
-
-// MARK: - Оставшиеся задания
-/*
- 1. Добавить логику авторизации
- 2. Обработать ошибку при соединении
- */

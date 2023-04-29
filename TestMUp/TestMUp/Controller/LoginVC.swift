@@ -24,7 +24,7 @@ final class LoginVC: UIViewController {
     
     private lazy var loginButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Log in with VK", for: .normal)
+        button.setTitle("Log in with VK".localized(), for: .normal)
         button.setTitleColor(Constants.Colors.customWhite, for: .normal)
         button.backgroundColor = Constants.Colors.customBlack
         button.layer.cornerRadius = 12
@@ -70,8 +70,8 @@ extension LoginVC {
     }
     
     private func authErrorAlert() {
-        let title = "Error"
-        let message = "Some error during authorization"
+        let title = "Error".localized()
+        let message = "Some error during authorization".localized()
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         

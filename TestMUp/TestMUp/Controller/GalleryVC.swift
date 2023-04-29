@@ -64,11 +64,11 @@ extension GalleryVC {
     }
     
     private func showErrorAlert() {
-        let alert = UIAlertController(title: "Failed loading images",
+        let alert = UIAlertController(title: "Failed loading images".localized(),
                                       message: nil,
                                       preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Reload",
+        alert.addAction(UIAlertAction(title: "Reload".localized(),
                                       style: .default,
                                       handler: { [weak self] (_) in
             self?.fetchData()
@@ -84,7 +84,7 @@ extension GalleryVC {
     
     private func navBarConfiguration() {
         title = "Mobile Up Gallery"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout",
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout".localized(),
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(exitButtonTapped))
@@ -106,9 +106,9 @@ extension GalleryVC {
 extension GalleryVC {
     
     @objc private func exitButtonTapped() {
-        let alert = UIAlertController(title: "Logout?", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [weak self] _ in
+        let alert = UIAlertController(title: "Logout?".localized(), message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No".localized(), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes".localized(), style: .default, handler: { [weak self] _ in
             
             AuthManager.shared.logOut { success in
                 if success {
