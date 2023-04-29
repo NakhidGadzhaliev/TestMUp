@@ -48,7 +48,7 @@
 		D04BA4EB29FABCCE000D8154 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D04BA4EE29FABE4E000D8154 /* Ext + DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + DateFormatter.swift"; sourceTree = "<group>"; };
 		D0F5922E29FD1F990085F77F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		D0F5923029FD1FA30085F77F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D0F5923429FD44A50085F77F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,7 +281,7 @@
 		D0F5923129FD1FA30085F77F /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D0F5923029FD1FA30085F77F /* en */,
+				D0F5923429FD44A50085F77F /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
